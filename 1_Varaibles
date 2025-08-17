@@ -1,0 +1,24 @@
+pipeline{
+    agent any
+    environment{                   // global variables
+        name ="Brahmam"
+    }
+    stages{
+        stage ("code"){
+            steps{
+                sh "touch ${name}.pdf"
+                echo "name of the file is:$name"
+            }
+        }
+        stage ("build"){
+            environment{
+                file_name="build_file"     // local variables
+            }
+            steps{
+                sh "touch ${file_name}.pdf"
+                echo "name of the file is:$file_name"
+                echo "name of the file is:$name"
+            }
+        }
+    }
+}
