@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+
+    environment {
+        name = "Brahmam"
+    }
+
+    parameters {
+        string(name: "address", defaultValue: "Modepalii", description: "")
+        choice(name: "env", choices: ['dev', 'test', 'prod'], description: "")
+    }
+
+    stages {
+        stage("code") {
+            steps {
+                sh "touch ${name}.pdf"
+                echo "name of the file is: ${name}"
+                echo "address parameter is: ${params.address}"
+                echo "environment choice is: ${params.env}"
+            }
+        }
+
+        stage("build") {
+            environment {
+                file_name = "build_file"
+            }
+            steps {
+                sh "touch ${file_name}.pdf"
+                echo "name of the file is: ${file_name}"
+                echo "global name is: ${name}"
+                echo "address parameter is: ${params.address}"
+                echo "environment choice is: ${params.env}"
+            }
+        }
+    }
+}
