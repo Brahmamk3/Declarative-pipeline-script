@@ -1,3 +1,4 @@
+# global Variables and local varaibles
 pipeline{
     agent any
     environment{                   // global variables
@@ -22,3 +23,7 @@ pipeline{
         }
     }
 }
+
+
+# declare global variables in system level
+mange jenkins-->systems-->under Global properties click Environment variables : give name : value
